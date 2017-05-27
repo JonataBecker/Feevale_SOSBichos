@@ -1,0 +1,9 @@
+<div class="container login">
+      <form class="form-signin" [formGroup]="cadastro" (ngSubmit)="onSubmit(cadastro)">
+        <h2 class="form-signin-heading">Cadastro</h2>
+        <input class="form-control" placeholder="Nome" formControlName="nome" required autofocus>
+        <input class="form-control" placeholder="E-mail" formControlName="email" required autofocus>
+        <input type="password" class="form-control" placeholder="Password" formControlName="senha" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+      </form>
+  </div>
