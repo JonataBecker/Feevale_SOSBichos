@@ -12,9 +12,9 @@ export class AnimaisPipe implements PipeTransform {
               if (!animal.adocao || animal.adocao.length == 0) {
                   return false;
               }
-            return animal.adocao.filter((adocao) => {
-                return adocao == filtro.adocao;
-            })
+              return animal.adocao.filter((adocao) => {
+                  return adocao == filtro.adocao;
+              }).length > 0;
           }
           return animal.dono == filtro.dono;
       });
