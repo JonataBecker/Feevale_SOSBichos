@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
-import { HomeComponent } from './home.component';
+import { PerfilComponent } from './perfil.component';
 import { MainComponent } from 'app/main/main.component';
-import { AnimalComponent } from 'app/home/animal.component';
 
 const routes: Routes = [
     {
@@ -17,12 +15,8 @@ const routes: Routes = [
                 pathMatch: 'full'
             },
             {
-                path: 'home',
-                component: HomeComponent,
-            },
-            {
-                path: 'home/animal',
-                component: AnimalComponent,
+                path: 'perfil',
+                component: PerfilComponent,
             }
         ]
     }
@@ -36,4 +30,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class HomeRoutingModule { }
+export class PerfilRoutingModule { }

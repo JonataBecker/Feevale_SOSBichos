@@ -72,3 +72,39 @@ body {
 .animal img {
     max-width: 100%;
 }
+
+.thumb-animal {
+    position: relative;
+}
+
+.thumb-animal .m {
+    display: none;
+    background: #ededed;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.thumb-animal .m a {
+    padding: 15px 5px;
+    cursor: pointer;
+}
+.thumb-animal .m a:first-child {
+    padding-left: 15px;
+}
+.thumb-animal .m a:last-child {
+    padding-right: 15px;
+}
+
+
+.thumb-animal:hover .m {
+    display: block;
+}
+
+.thumb-animal:hover {
+    background: #ededed;
+}
+
+.thumb-animal:hover .animal img {
+    opacity: 0.7;
+}

@@ -7,6 +7,7 @@ export const environment = {
   production: false,
   firebase: {
     databaseURL: 'https://sosbicho-4cc13.firebaseio.com/',
-    projectId: 'sosbicho-4cc13'
+    projectId: 'sosbicho-4cc13',
+    storageBucket: 'gs://sosbicho-4cc13.appspot.com'
   }
 };

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { PerfilService } from '../perfil/perfil.service'
 
 @Component({
     selector: 'cadastro',
@@ -11,7 +12,11 @@ export class CadastroComponent implements OnInit {
 
     public cadastro: FormGroup;
 
-    constructor(private router: Router, private db: AngularFireDatabase) {
+    constructor(
+        private router: Router,
+        private db: AngularFireDatabase,
+        private perfilService: PerfilService
+    ) {
     }
 
     ngOnInit() {
@@ -28,7 +33,8 @@ export class CadastroComponent implements OnInit {
             return;
         }
         let items: FirebaseListObservable<any[]> = this.db.list('/usuarios');
-        items.push(value);
+        let data = items.push(value);
+        this.perfilService.login(value, data.key);
         this.router.navigate(['portal']);
     }
 

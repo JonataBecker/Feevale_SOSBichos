@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { CadastroComponent } from './cadastro.component';
+import { PerfilService } from '../perfil/perfil.service'
 
 @NgModule({
     imports: [
@@ -16,6 +17,9 @@ import { CadastroComponent } from './cadastro.component';
     declarations: [
         LoginComponent,
         CadastroComponent
+    ],
+    providers: [
+        PerfilService
     ]
 })
 export class LoginModule { }

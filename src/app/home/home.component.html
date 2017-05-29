@@ -1,6 +1,7 @@
 
 <div class="container">
 	<h1 class="titulo-home">ONG S.O.S bicho</h1>
+	<a routerLink="animal" class="btn btn-primary pull-right" style="margin-top:-44px">Novo</a>
 </div>
 
 <br />
@@ -11,43 +12,26 @@
             <div class="thumbnail menu-bicho">
                 <div class="caption">
                   <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#">Meus animais</a></li>
-                    <li><a href="#">Cachorros</a></li>
-                    <li><a href="#">Gatos</a></li>
-                    <li><a href="#">Macacos</a></li>
-                    <li><a href="#">Ratos</a></li>
+				  	<li><a (click)="todosAnimais()">Todos os animais</a></li>
+					<li><a (click)="meusAnimais()">Meus animais</a></li>
+                    <li><a (click)="adocao()">Adoção</a></li>
                   </ul>
               </div>
           </div>
         </div>
 		<div class="col-lg-9" >
-			<div class="thumbnail">
+			<div class="thumbnail thumb-animal" *ngFor="let item of itens | animais:filtro">
 				<div class="caption">
                     <div class="animal">
-                        <img src="assets/cachorro-triste.jpg" />
+                        <img src="{{item.value.foto}}" />
                     </div>
-					<h4>Nicolau</h4>
-					<p>Este é um cachorro </p>
+					<h4>{{item.value.nome}}</h4>
+					<p>{{item.value.descricao}}</p>
 				</div>
-			</div>
-
-			<div class="thumbnail">
-				<div class="caption">
-                    <div class="animal">
-                        <img src="assets/pug-cachorro-roubado.jpg" />
-                    </div>
-					<h4>Nicolau</h4>
-					<p>Nicolau em cena novamente </p>
-				</div>
-			</div>
-
-			<div class="thumbnail">
-				<div class="caption">
-                    <div class="animal">
-                        <img src="assets/macaquinho.jpg" />
-                    </div>
-					<h4>Nicolau</h4>
-					<p>Olha que voltou novamente </p>
+				<div class="m">
+					<a class="glyphicon glyphicon-ok" (click)="adotado(item)" *ngIf="usuario == item.value.dono"></a>
+					<a class="glyphicon glyphicon-pushpin" (click)="interesse(item)" *ngIf="usuario != item.value.dono && !item.interesse"></a>
+					<a class="glyphicon glyphicon-pencil" *ngIf="usuario == item.value.dono"></a>
 				</div>
 			</div>
 		</div>
