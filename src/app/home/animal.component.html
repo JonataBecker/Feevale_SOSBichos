@@ -12,6 +12,24 @@
               <textarea class="form-control" formControlName="descricao"></textarea>
             </div>
             <div class="form-group">
+              <label>Idade</label>
+              <input type="text" class="form-control" placeholder="Idade" formControlName="idade">
+            </div>
+            <div class="form-group">
+              <label>Espécie</label>
+              <select class="form-control" formControlName="especie" (ngModelChange)="onChange($event)">
+                  <option value="0">Selecione a espécie</option>
+                  <option value="{{especie.id}}" *ngFor="let especie of especies">{{especie.nome}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Raça</label>
+              <select class="form-control" formControlName="raca">
+                  <option value="0" >Selecione a raça</option>
+                  <option value="{{raca.id}}" *ngFor="let raca of racas">{{raca.descricao}}</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label>Foto</label>
               <input type="file" id="file">
             </div>

@@ -3,7 +3,8 @@ import {Router} from "@angular/router";
 import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { ActivatedRoute } from "@angular/router";
-import {PerfilService} from '../perfil/perfil.service'
+import { PerfilService } from '../perfil/perfil.service'
+import { EspecieService } from './especie.service'
 import * as firebase from 'firebase';
 
 @Component({
@@ -14,12 +15,15 @@ export class AnimalComponent implements OnInit {
 
     public animal: FormGroup;
     public animais:FirebaseListObservable<any[]>;
+    public especies: any;
+    public racas:any;
 
     constructor(
         private router: Router,
         private db: AngularFireDatabase,
         private activatedRoute: ActivatedRoute,
-        private perfilService: PerfilService
+        private perfilService: PerfilService,
+        private especieService: EspecieService
     ) {
     }
 
@@ -27,9 +31,21 @@ export class AnimalComponent implements OnInit {
         this.animal = new FormGroup({
             nome: new FormControl(''),
             descricao: new FormControl(''),
-            foto: new FormControl('')
+            foto: new FormControl(''),
+            idade: new FormControl(''),
+            raca: new FormControl(0),
+            especie: new FormControl(0)
         });
         this.animais = this.db.list('/animais');
+        this.especies = this.especieService.getEspecies();
+        this.racas = [];
+    }
+
+    onChange($event) {
+        this.racas = [];
+        if ($event) {
+            this.racas = this.especieService.getRaca($event);
+        }
     }
 
     onSubmit({ value, valid }: { value: any, valid:boolean }) {

@@ -6,6 +6,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { AnimalComponent } from './animal.component';
 import { AnimaisPipe } from './animal.pipe';
+import { EspecieService } from './especie.service'
 
 @NgModule({
     imports: [
@@ -18,6 +19,9 @@ import { AnimaisPipe } from './animal.pipe';
         HomeComponent,
         AnimalComponent,
         AnimaisPipe
+    ],
+    providers: [
+        EspecieService
     ]
 })
 export class HomeModule { }
