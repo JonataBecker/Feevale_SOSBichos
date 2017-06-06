@@ -18,20 +18,21 @@ export class AnimaisPipe implements PipeTransform {
               return item.value.raca == filtro.raca;
           });
       }
-      if (filtro.todos) {
+      if (filtro.tipo == 'todos') {
           return animaisFiltros;
       }
       return animaisFiltros.filter((item) => {
           let animal = item.value;
-          if (filtro.adocao) {
+          if (filtro.tipo.adocao) {
               if (!animal.adocao || animal.adocao.length == 0) {
                   return false;
               }
               return animal.adocao.filter((adocao) => {
-                  return adocao == filtro.adocao;
+                  return adocao == filtro.tipo.adocao;
               }).length > 0;
           }
-          return animal.dono == filtro.dono;
+          console.log(filtro.tipo.dono);
+          return animal.dono == filtro.tipo.dono;
       });
   }
 }

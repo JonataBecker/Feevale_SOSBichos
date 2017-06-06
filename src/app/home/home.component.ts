@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.reload();
+        this.filtro = {};
         this.todosAnimais();
         this.usuario = this.perfilService.getKey();
         this.especies = this.especieService.getEspecies();
@@ -55,15 +56,15 @@ export class HomeComponent implements OnInit {
     }
 
     todosAnimais() {
-        this.filtro = {todos:'todos'};
+        this.filtro.tipo = 'todos';
     }
 
     meusAnimais() {
-        this.filtro = {dono:this.perfilService.getKey()};
+        this.filtro.tipo = {dono:this.perfilService.getKey()};
     }
 
     adocao() {
-        this.filtro = {adocao:this.perfilService.getKey()};
+        this.filtro.tipo = {adocao:this.perfilService.getKey()};
     }
 
     adotado(item:any) {

@@ -20,11 +20,13 @@
       "prefix": "app",
       "styles": [
         "css/bootstrap.min.css",
+        "../node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css",
         "styles.css"
       ],
       "scripts": [
           "js/jquery.js",
           "js/bootstrap.min.js",
+          "../node_modules/bootstrap-slider/dist/bootstrap-slider.min.js",
           "scripts.js"
       ],
       "environmentSource": "environments/environment.ts",

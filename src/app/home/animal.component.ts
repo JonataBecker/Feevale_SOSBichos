@@ -6,6 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 import { PerfilService } from '../perfil/perfil.service'
 import { EspecieService } from './especie.service'
 import * as firebase from 'firebase';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'app-animal',
@@ -17,6 +18,7 @@ export class AnimalComponent implements OnInit {
     public animais:FirebaseListObservable<any[]>;
     public especies: any;
     public racas:any;
+    public idade:any;
 
     constructor(
         private router: Router,
@@ -39,6 +41,7 @@ export class AnimalComponent implements OnInit {
         this.animais = this.db.list('/animais');
         this.especies = this.especieService.getEspecies();
         this.racas = [];
+        eval('$("input.slider").slider()');
     }
 
     onChange($event) {
