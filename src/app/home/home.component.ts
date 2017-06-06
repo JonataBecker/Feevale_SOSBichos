@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from "@angular/router";
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { ActivatedRoute } from "@angular/router";
-import { PerfilService} from '../perfil/perfil.service'
+import { PerfilService } from '../perfil/perfil.service'
+import { EspecieService } from './especie.service'
 
 @Component({
     selector: 'app-home',
@@ -15,17 +16,23 @@ export class HomeComponent implements OnInit {
     public filtro:any;
     public usuario:string;
     public itens:any;
+    public especies: any;
+    public racas:any;
 
     constructor(
         private router: Router,
         private db: AngularFireDatabase,
         private activatedRoute: ActivatedRoute,
-        private perfilService: PerfilService
+        private perfilService: PerfilService,
+        private especieService: EspecieService
     ) { }
 
     ngOnInit() {
         this.reload();
+        this.todosAnimais();
         this.usuario = this.perfilService.getKey();
+        this.especies = this.especieService.getEspecies();
+        this.racas = [];
     }
 
     private reload() {
@@ -48,7 +55,7 @@ export class HomeComponent implements OnInit {
     }
 
     todosAnimais() {
-        this.filtro = null;
+        this.filtro = {todos:'todos'};
     }
 
     meusAnimais() {
@@ -63,6 +70,19 @@ export class HomeComponent implements OnInit {
         item.value.adotado = true;
         this.animais.update(item.value.$key, item.value);
         this.reload();
+    }
+
+    onChangeEspecie($event) {
+        this.filtro.especie = $event.target.value;
+        this.filtro.raca = null;
+        this.racas = [];
+        if ($event.target.value) {
+            this.racas = this.especieService.getRaca($event.target.value);
+        }
+    }
+
+    onChangeRaca($event) {
+        this.filtro.raca = $event.target.value;
     }
 
     interesse(item:any) {
